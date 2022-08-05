@@ -1,5 +1,5 @@
 {
-  "name": "steamcards",
+  "name": "steamcards.js",
   "version": "1.0.0",
   "description": "Render Steam Cards into your document",
   "main": "index.js",
