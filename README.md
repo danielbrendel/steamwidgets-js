@@ -32,7 +32,7 @@ You can also use NPM to install the package:
 npm install "steamcards.js"
 ```
 ```javascript
-require('./steamcards.js');
+require('steamcards.js');
 ```
 
 You can define these options:
