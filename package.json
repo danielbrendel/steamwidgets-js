@@ -1,6 +1,6 @@
 {
   "name": "steamcards.js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Render Steam Cards into your document",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,8 @@
   },
   "keywords": [
     "steam",
-	"cards"
+	  "cards",
+    "widgets"
   ],
   "author": "Daniel Brendel",
   "license": "MIT",

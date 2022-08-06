@@ -103,6 +103,10 @@ You can define these options:
 			<td>style-color-onlinecount / style.colorOnlinecount</td>
 			<td>Specify a CSS value for the online count color</td>
 		</tr>
+		<tr>
+			<td>style-hideimage / style.hideimage</td>
+			<td>Specify whether the card image shall be hidden or not</td>
+		</tr>
 	</tbody>
 </table>
 
@@ -120,3 +124,34 @@ You can also dynamically create Steam Cards via JavaScript:
     });
 </script>
 ```
+
+The following methods are available for a Steam Card element / object:
+
+<table>
+	<thead>
+		<tr></tr>
+		<tr></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>Method</strong></td>
+			<td><strong>Description</strong></td>
+		</tr>
+		<tr>
+			<td>updateCard()</td>
+			<td>Updates the card data and displays them</td>
+		</tr>
+		<tr>
+			<td>changeLang(lang, playtext, author, onlinecount)</td>
+			<td>Changes the language of the card using the given information</td>
+		</tr>
+		<tr>
+			<td>setImageVisibility(visibility)</td>
+			<td>Sets the card image visibility</td>
+		</tr>
+		<tr>
+			<td>remove()</td>
+			<td>Removes the card from the document</td>
+		</tr>
+	</tbody>
+</table>
