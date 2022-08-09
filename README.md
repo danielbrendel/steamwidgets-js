@@ -24,6 +24,8 @@ npm i steamcards.js
 import 'steamcards.js'; //Import all available widgets
 
 import 'steamcards.js/steam_app'; //Import Steam App Widget
+import 'steamcards.js/steam_server'; //Import Steam Server Widget
+import 'steamcards.js/steam_user'; //Import Steam User Widget
 ```
 
 ## Steam App
