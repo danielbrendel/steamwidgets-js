@@ -21,7 +21,9 @@ npm i steamcards.js
 ```
 
 ```javascript
-require('steamcards.js');
+import 'steamcards.js'; //Import all available widgets
+
+import 'steamcards.js/steam_app'; //Import Steam App Widget
 ```
 
 ## Steam App
