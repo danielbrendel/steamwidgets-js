@@ -2,9 +2,6 @@
  * SteamCards node package index file
  */
 
-import './src/css/steamcards.css';
-
-require('./src/js/element.js');
-
-window.SteamCard = require('./src/js/card.js');
-
+window.SteamApp = require('./src/js/steam_app.js');
+window.SteamServer = require('./src/js/steam_server.js');
+window.SteamUser = require('./src/js/steam_user.js');
