@@ -25,6 +25,7 @@ class SteamAppElem extends HTMLElement
         var playtext = (typeof this.attributes.playtext !== 'undefined') ? this.attributes.playtext.value : 'Play on Steam';
         var author = (typeof this.attributes.author !== 'undefined') ? this.attributes.author.value : 'By :developer';
         var onlinecount = (typeof this.attributes.onlinecount !== 'undefined') ? this.attributes.onlinecount.value : null;
+        var rating = (typeof this.attributes.rating !== 'undefined') ? parseInt(this.attributes.rating.value) : 0;
         var width = (typeof this.attributes.width !== 'undefined') ? this.attributes.width.value : null;
         var height = (typeof this.attributes.height !== 'undefined') ? this.attributes.height.value : null;
         var styleBorder = (typeof this.attributes['style-border'] !== 'undefined') ? this.attributes['style-border'].value : null;
@@ -43,6 +44,7 @@ class SteamAppElem extends HTMLElement
                 playtext: playtext,
                 author: author,
                 onlinecount: onlinecount,
+                rating: rating,
                 width: width,
                 height: height,
                 styleBorder: styleBorder,
@@ -61,6 +63,7 @@ class SteamAppElem extends HTMLElement
                 playtext,
                 author,
                 onlinecount,
+                rating,
                 width,
                 height,
                 styleBorder,
@@ -75,7 +78,7 @@ class SteamAppElem extends HTMLElement
         }
     }
 
-    setupCard(appid, lang, playtext, author, onlinecount, width, height, styleBorder, styleShadow, styleColorBackground, styleColorTitle, styleColorDescription, styleColorAuthor, styleColorOnlinecount, styleHideImage)
+    setupCard(appid, lang, playtext, author, onlinecount, rating, width, height, styleBorder, styleShadow, styleColorBackground, styleColorTitle, styleColorDescription, styleColorAuthor, styleColorOnlinecount, styleHideImage)
     {
         var req = new XMLHttpRequest();
         var self = this;
@@ -162,6 +165,19 @@ class SteamAppElem extends HTMLElement
 
                     cardStyle = 'style="' + widthCode + borderCode + shadowCode + bgColor + '"';
                 }
+                
+                let ratingCode = '';
+                if (rating) {
+                    ratingCode = '<br/>';
+
+                    for (let i = 0; i < Math.round(json.data.rating_count / 2); i++) {
+                        ratingCode += '<span>&#x2B50;</span>';
+                    }
+
+                    for (let i = Math.round(json.data.rating_count / 2); i < 5; i++) {
+                        ratingCode += '<span class="steam-app-title-left-rating-star-grey">&#x2B50;</span>';
+                    }
+                }
 
                 let html = `
                     <div class="steam-app" ` + ((cardStyle.length > 0) ? cardStyle: '') + `>
@@ -169,8 +185,12 @@ class SteamAppElem extends HTMLElement
                     
                         <div class="steam-app-infos">
                             <div class="steam-app-title">
-                                <div class="steam-app-title-name" ` + ((styleColorTitle !== null) ? 'style="color: ' + styleColorTitle + ';"' : '') + `>` + json.data.name + `</div>
-                                <div class="steam-app-title-count" ` + ((styleColorOnlinecount !== null) ? 'style="color: ' + styleColorOnlinecount + ';"' : '') + `>` + ((onlineCountText.length > 0) ? onlineCountText : '') + `</div>
+                                <div class="steam-app-title-left">
+                                    <div class="steam-app-title-left-name" ` + ((styleColorTitle !== null) ? 'style="color: ' + styleColorTitle + ';"' : '') + `>` + json.data.name + `</div>
+                                    <div class="steam-app-title-left-rating">` + ratingCode + `</div>
+                                </div>
+                                
+                                <div class="steam-app-title-right" ` + ((styleColorOnlinecount !== null) ? 'style="color: ' + styleColorOnlinecount + ';"' : '') + `>` + ((onlineCountText.length > 0) ? onlineCountText : '') + `</div>
                             </div>
                             
                             <div class="steam-app-description" ` + ((styleColorDescription !== null) ? 'style="color: ' + styleColorDescription + ';"' : '') + `>
@@ -205,6 +225,7 @@ class SteamAppElem extends HTMLElement
             this.storedData.playtext,
             this.storedData.author,
             this.storedData.onlinecount,
+            this.storedData.rating,
             this.storedData.width,
             this.storedData.height,
             this.storedData.styleBorder,
@@ -231,6 +252,7 @@ class SteamAppElem extends HTMLElement
             this.storedData.playtext,
             this.storedData.author,
             this.storedData.onlinecount,
+            this.storedData.rating,
             this.storedData.width,
             this.storedData.height,
             this.storedData.styleBorder,
@@ -254,6 +276,7 @@ class SteamAppElem extends HTMLElement
             this.storedData.playtext,
             this.storedData.author,
             this.storedData.onlinecount,
+            this.storedData.rating,
             this.storedData.width,
             this.storedData.height,
             this.storedData.styleBorder,
@@ -309,6 +332,7 @@ module.exports = class SteamApp
         var appid = (typeof config.appid !== 'undefined') ? config.appid : null;
         var lang = (typeof config.lang !== 'undefined') ? config.lang : 'english';
         var onlinecount = (typeof config.onlinecount !== 'undefined') ? config.onlinecount : null;
+        var rating = (typeof config.rating !== 'undefined') ? config.rating : 0;
         var playtext = (typeof config.playtext !== 'undefined') ? config.playtext : 'Play on Steam';
         var author = (typeof config.author !== 'undefined') ? config.author : 'By :developer';
         var width = (typeof config.width !== 'undefined') ? config.width : null;
@@ -334,6 +358,10 @@ module.exports = class SteamApp
             styleHideImage = (typeof config.style.hideimage !== 'undefined') ? config.style.hideimage : 0;
         }
 
+        if (typeof rating === 'boolean') {
+            rating = (rating) ? 1 : 0;
+        }
+
         if (typeof styleShadow === 'boolean') {
             styleShadow = (styleShadow) ? 1 : 0;
         }
@@ -347,6 +375,7 @@ module.exports = class SteamApp
         this.elem.setAttribute('lang', lang);
         this.elem.setAttribute('playtext', playtext);
         this.elem.setAttribute('author', author);
+        this.elem.setAttribute('rating', rating);
         this.elem.setAttribute('style-border', styleBorder);
         this.elem.setAttribute('style-shadow', styleShadow);
         this.elem.setAttribute('style-color-background', styleColorBackground);

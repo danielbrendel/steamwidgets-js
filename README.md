@@ -65,6 +65,10 @@ You can define these options:
 			<td>If specified this will be the text for the online count. Use <b>:count</b> to dynamically insert the actual products player/user count.</td>
 		</tr>
 		<tr>
+			<td>rating</td>
+			<td>If set to true then the app rating will be shown as a 5-star-system, otherwise it is hidden</td>
+		</tr>
+		<tr>
 			<td>playtext</td>
 			<td>Specifies the text of the button that eventually links to the Steam products store page</td>
 		</tr>
