@@ -487,6 +487,26 @@ You can define these options:
 			<td>style-shadow / style.shadow</td>
 			<td>You can specify false to prevent displaying box shadow or true to enable (default)</td>
 		</tr>
+		<tr>
+			<td>style-color-background / style.colorBackground</td>
+			<td>Specify a CSS value for the background color</td>
+		</tr>
+		<tr>
+			<td>style-color-title / style.colorTitle</td>
+			<td>Specify a CSS value for the title color</td>
+		</tr>
+		<tr>
+			<td>style-color-description / style.colorDescription</td>
+			<td>Specify a CSS value for the description color</td>
+		</tr>
+		<tr>
+			<td>style-color-stats-count / style.colorStatsCount</td>
+			<td>Specify a CSS value for the stats count color</td>
+		</tr>
+		<tr>
+			<td>style-color-stats-label / style.colorStatsLabel</td>
+			<td>Specify a CSS value for the stats label color</td>
+		</tr>
 	</tbody>
 </table>
 
