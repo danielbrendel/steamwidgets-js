@@ -4,6 +4,8 @@
 
 Released under the MIT license
 
+https://www.steamwidgets.com
+
 ## About
 SteamWidgets is a clientside web component that offers an easy way to integrate Steam Widgets of various Steam entities into your website. Therefore you only need very few code in order to render Steam Widgets into your document.
 
