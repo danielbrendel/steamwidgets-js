@@ -13,6 +13,7 @@ The following Widgets are currently available:
 - Steam App Widget
 - Steam Server Widget
 - Steam User Widget
+- Steam Workshop Widget
 
 ## Installation
 
@@ -26,6 +27,7 @@ import 'steamwidgets'; //Import all available widgets
 import 'steamwidgets/steam_app'; //Import Steam App Widget
 import 'steamwidgets/steam_server'; //Import Steam Server Widget
 import 'steamwidgets/steam_user'; //Import Steam User Widget
+import 'steamwidgets/steam_workshop'; //Import Steam Workshop Widget
 ```
 
 ## Steam App
@@ -411,6 +413,116 @@ The following methods are available for a Steam User element / object:
 		</tr>
 		<tr>
 			<td>changeLang(online_yes, online_no, member_since, viewtext)</td>
+			<td>Changes the language of the widget using the given information</td>
+		</tr>
+		<tr>
+			<td>setImageVisibility(visibility)</td>
+			<td>Sets the widget image visibility</td>
+		</tr>
+		<tr>
+			<td>remove()</td>
+			<td>Removes the widget from the document</td>
+		</tr>
+	</tbody>
+</table>
+
+<hr/>
+
+## Steam Workshop
+
+When referenced the required Steam Workshop module, the minimum code to render a widget is as follows:
+
+```html
+<steam-workshop itemid="id"></steam-workshop>
+```
+
+This renders the following widget:<br>
+![Steam Workshop Widget](https://www.steamwidgets.com/img/widget_workshop.png)
+
+You can define these options:
+
+<table>
+	<thead>
+		<tr></tr>
+		<tr></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>Attribute</strong></td>
+			<td><strong>Value</strong></td>
+		</tr>
+		<tr>
+			<td>itemid</td>
+			<td>Specifies the item ID of the Steam Workshop item</td>
+		</tr>
+		<tr>
+			<td>views</td>
+			<td>Specifies the text of the views stats label</td>
+		</tr>
+		<tr>
+			<td>subscriptions</td>
+			<td>Specifies the text of the subscriptions stats label</td>
+		</tr>
+		<tr>
+			<td>favorites</td>
+			<td>Specifies the text of the favorites stats label</td>
+		</tr>
+		<tr>
+			<td>author</td>
+			<td>Specifies the author text. Use <b>:creator</b> to insert the creators Steam persona name</td>
+		</tr>
+		<tr>
+			<td>viewtext</td>
+			<td>Specifies the text of the button which can be used to go to the Workshop item page</td>
+		</tr>
+		<tr>
+			<td>show-image / showImage</td>
+			<td>Specifies if the workshop item preview image shall be displayed. Defaults to true/1</td>
+		</tr>
+		<tr>
+			<td>style-border / style.border</td>
+			<td>Specify border rounding: Either none, small or max</td>
+		</tr>
+		<tr>
+			<td>style-shadow / style.shadow</td>
+			<td>You can specify false to prevent displaying box shadow or true to enable (default)</td>
+		</tr>
+	</tbody>
+</table>
+
+You can also dynamically create Steam Workshop widgets via JavaScript:
+
+```html
+<div id="workshop-widget"></div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+        let widget = new SteamWorkshop('#workshop-widget', {
+            itemid: 'id',
+            //You can specify the same attributes as shown in the table above
+        });
+    });
+</script>
+```
+
+The following methods are available for a Steam Workshop element / object:
+
+<table>
+	<thead>
+		<tr></tr>
+		<tr></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>Method</strong></td>
+			<td><strong>Description</strong></td>
+		</tr>
+		<tr>
+			<td>updateWidget()</td>
+			<td>Updates the widget data and displays them</td>
+		</tr>
+		<tr>
+			<td>changeLang(views, subscriptions, favorites, author, viewtext)</td>
 			<td>Changes the language of the widget using the given information</td>
 		</tr>
 		<tr>
