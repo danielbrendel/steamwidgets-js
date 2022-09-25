@@ -1,13 +1,13 @@
 /**
- * SteamCards - Steam Cards for your website
+ * SteamWidgets - Steam Widgets for your website
  * 
  * Module: Steam Game/App Widget
  * 
  * Visit: https://github.com/danielbrendel
  */
 
-const STEAMCARDS_APP_ENDPOINT = 'https://www.steamcards.net';
-const STEAMCARDS_APP_VERSION = 'v1';
+const STEAMWIDGETS_APP_ENDPOINT = 'http://localhost:8000';
+const STEAMWIDGETS_APP_VERSION = 'v1';
 
 /**
  * Class SteamAppElem
@@ -57,7 +57,7 @@ class SteamAppElem extends HTMLElement
                 styleHideImage: styleHideImage
             };
 
-            this.setupCard(
+            this.setupWidget(
                 appid,
                 lang,
                 playtext,
@@ -78,7 +78,7 @@ class SteamAppElem extends HTMLElement
         }
     }
 
-    setupCard(appid, lang, playtext, author, onlinecount, rating, width, height, styleBorder, styleShadow, styleColorBackground, styleColorTitle, styleColorDescription, styleColorAuthor, styleColorOnlinecount, styleHideImage)
+    setupWidget(appid, lang, playtext, author, onlinecount, rating, width, height, styleBorder, styleShadow, styleColorBackground, styleColorTitle, styleColorDescription, styleColorAuthor, styleColorOnlinecount, styleHideImage)
     {
         var req = new XMLHttpRequest();
         var self = this;
@@ -115,12 +115,12 @@ class SteamAppElem extends HTMLElement
                     author = author.replace(':publisher', publishers);
                 }
 
-                if (!document.getElementById('steamcards-app-styles')) {
+                if (!document.getElementById('steamwidgets-app-styles')) {
                     let link = document.createElement('link');
-                    link.id = 'steamcards-app-styles';
+                    link.id = 'steamwidgets-app-styles';
                     link.rel = 'stylesheet';
                     link.type = 'text/css';
-                    link.href = STEAMCARDS_APP_ENDPOINT + '/api/resource/query?type=css&module=app&version=' + STEAMCARDS_APP_VERSION;
+                    link.href = STEAMWIDGETS_APP_ENDPOINT + '/api/resource/query?type=css&module=app&version=' + STEAMWIDGETS_APP_VERSION;
                     document.getElementsByTagName('head')[0].appendChild(link);
                 }
 
@@ -130,9 +130,9 @@ class SteamAppElem extends HTMLElement
                     onlineCountText = onlineCountText.replace(':count', self.readableCount(json.data.online_count));
                 }
 
-                let cardImageStyle = '';
+                let widgetImageStyle = '';
 
-                let cardStyle = '';
+                let widgetStyle = '';
                 if ((width !== null) || (styleBorder !== null) || (styleShadow !== true) || (styleColorBackground !== null)) {
                     let widthCode = '';
                     if (width !== null) {
@@ -143,13 +143,13 @@ class SteamAppElem extends HTMLElement
                     if (styleBorder !== null) {
                         if (styleBorder === 'max') {
                             borderCode = 'border-radius: 25px;';
-                            cardImageStyle = 'border-top-left-radius: 25px; border-top-right-radius: 25px;';
+                            widgetImageStyle = 'border-top-left-radius: 25px; border-top-right-radius: 25px;';
                         } else if (styleBorder === 'small') {
                             borderCode = 'border-radius: 4px;';
-                            cardImageStyle = 'border-top-left-radius: 4px; border-top-right-radius: 4px;';
+                            widgetImageStyle = 'border-top-left-radius: 4px; border-top-right-radius: 4px;';
                         } else if (styleBorder === 'none') {
                             borderCode = 'border-radius: unset;';
-                            cardImageStyle = 'border-top-left-radius: unset; border-top-right-radius: unset;';
+                            widgetImageStyle = 'border-top-left-radius: unset; border-top-right-radius: unset;';
                         }
                     }
 
@@ -163,7 +163,7 @@ class SteamAppElem extends HTMLElement
                         bgColor = 'background-color: ' + styleColorBackground + ';';
                     }
 
-                    cardStyle = 'style="' + widthCode + borderCode + shadowCode + bgColor + '"';
+                    widgetStyle = 'style="' + widthCode + borderCode + shadowCode + bgColor + '"';
                 }
                 
                 let ratingCode = '';
@@ -180,8 +180,8 @@ class SteamAppElem extends HTMLElement
                 }
 
                 let html = `
-                    <div class="steam-app" ` + ((cardStyle.length > 0) ? cardStyle: '') + `>
-                        <div class="steam-app-image" style="background-image: url('` + json.data.header_image + `'); ` + ((height !== null) ? 'height: ' + height + 'px;' : '') + ((cardImageStyle.length > 0) ? cardImageStyle : '') + ((styleHideImage) ? 'display: none;' : '') + `"></div>
+                    <div class="steam-app" ` + ((widgetStyle.length > 0) ? widgetStyle: '') + `>
+                        <div class="steam-app-image" style="background-image: url('` + json.data.header_image + `'); ` + ((height !== null) ? 'height: ' + height + 'px;' : '') + ((widgetImageStyle.length > 0) ? widgetImageStyle : '') + ((styleHideImage) ? 'display: none;' : '') + `"></div>
                     
                         <div class="steam-app-infos">
                             <div class="steam-app-title">
@@ -213,13 +213,13 @@ class SteamAppElem extends HTMLElement
                 self.innerHTML = html;
             }
         };
-        req.open('GET', STEAMCARDS_APP_ENDPOINT + '/api/query/app?appid=' + appid + '&lang=' + lang, true);
+        req.open('GET', STEAMWIDGETS_APP_ENDPOINT + '/api/query/app?appid=' + appid + '&lang=' + lang, true);
         req.send();
     }
 
-    updateCard()
+    updateWidget()
     {
-        this.setupCard(
+        this.setupWidget(
             this.storedData.appid,
             this.storedData.lang,
             this.storedData.playtext,
@@ -246,7 +246,7 @@ class SteamAppElem extends HTMLElement
         this.storedData.author = author;
         this.storedData.onlinecount = onlinecount;
 
-        this.setupCard(
+        this.setupWidget(
             this.storedData.appid,
             this.storedData.lang,
             this.storedData.playtext,
@@ -270,7 +270,7 @@ class SteamAppElem extends HTMLElement
     {
         this.storedData.styleHideImage = !visibility;
 
-        this.setupCard(
+        this.setupWidget(
             this.storedData.appid,
             this.storedData.lang,
             this.storedData.playtext,
@@ -316,7 +316,7 @@ window.customElements.define('steam-app', SteamAppElem);
 /**
  * Class SteamApp
  * 
- * Dynamically create a Steam game/app card via JavaScript
+ * Dynamically create a Steam game/app widget via JavaScript
  */
 module.exports = class SteamApp
 {
@@ -403,9 +403,9 @@ module.exports = class SteamApp
         }
     }
 
-    updateCard()
+    updateWidget()
     {
-        this.elem.updateCard();
+        this.elem.updateWidget();
     }
 
     changeLang(lang, playtext, author, onlinecount)

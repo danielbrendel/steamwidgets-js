@@ -1,24 +1,28 @@
 {
-  "name": "steamcards.js",
-  "version": "1.0.6",
-  "description": "Render Steam Cards into your document",
+  "name": "steamwidgets",
+  "version": "1.0.0",
+  "description": "Render Steam Widgets into your document",
   "main": "index.js",
   "scripts": {
     "test": "echo \"No test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danielbrendel/steamcards-js.git"
+    "url": "git+https://github.com/danielbrendel/steamwidgets-js.git"
   },
   "keywords": [
     "steam",
-	  "cards",
-    "widgets"
+	  "widgets",
+    "steam-widgets",
+    "steam-game",
+    "steam-app",
+    "steam-server",
+    "steam-player"
   ],
   "author": "Daniel Brendel",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/danielbrendel/steamcards-js/issues"
+    "url": "https://github.com/danielbrendel/steamwidgets-js/issues"
   },
-  "homepage": "https://github.com/danielbrendel/steamcards-js#readme"
+  "homepage": "https://github.com/danielbrendel/steamwidgets-js#readme"
 }

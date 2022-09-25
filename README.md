@@ -1,13 +1,13 @@
-# SteamCards Node Package
+# SteamWidgets NPM package
 
 (C) 2022 by Daniel Brendel
 
 Released under the MIT license
 
 ## About
-SteamCards is a clientside web component that offers an easy way to integrate Steam Cards of various Steam entities into your website. Therefore you only need very few code in order to render Steam Cards into your document.
+SteamWidgets is a clientside web component that offers an easy way to integrate Steam Widgets of various Steam entities into your website. Therefore you only need very few code in order to render Steam Widgets into your document.
 
-SteamCards is used via JavaScript. Since JavaScript is supported by all major browser per default it is platform independent and compatible.
+SteamWidgets is used via JavaScript. Since JavaScript is supported by all major browser per default it is platform independent and compatible.
 
 The following Widgets are currently available:
 - Steam App Widget
@@ -17,28 +17,26 @@ The following Widgets are currently available:
 ## Installation
 
 ```
-npm i steamcards.js
+npm i steamwidgets
 ```
 
 ```javascript
-import 'steamcards.js'; //Import all available widgets
+import 'steamwidgets'; //Import all available widgets
 
-import 'steamcards.js/steam_app'; //Import Steam App Widget
-import 'steamcards.js/steam_server'; //Import Steam Server Widget
-import 'steamcards.js/steam_user'; //Import Steam User Widget
+import 'steamwidgets/steam_app'; //Import Steam App Widget
+import 'steamwidgets/steam_server'; //Import Steam Server Widget
+import 'steamwidgets/steam_user'; //Import Steam User Widget
 ```
 
 ## Steam App
 
-When referenced the required Steam App module, the minimum code to render a card is as follows:
+When referenced the required Steam App module, the minimum code to render a widget is as follows:
 
 ```html
 <steam-app appid="620"></steam-app>
 ```
 
-This renders the following card:
-
-![App Card](https://www.steamcards.net/img/card_app.png)
+This renders the following widget:
 
 You can define these options:
 
@@ -78,11 +76,11 @@ You can define these options:
 		</tr>
 		<tr>
 			<td>width</td>
-			<td>Specify the width of the card</td>
+			<td>Specify the width of the widget</td>
 		</tr>
 		<tr>
 			<td>height</td>
-			<td>Specify the height of the card</td>
+			<td>Specify the height of the widget</td>
 		</tr>
 		<tr>
 			<td>style-border / style.border</td>
@@ -114,19 +112,19 @@ You can define these options:
 		</tr>
 		<tr>
 			<td>style-hideimage / style.hideimage</td>
-			<td>Specify whether the card image shall be hidden or not</td>
+			<td>Specify whether the widget image shall be hidden or not</td>
 		</tr>
 	</tbody>
 </table>
 
-You can also dynamically create Steam Cards via JavaScript:
+You can also dynamically create Steam Widgets via JavaScript:
 
 ```html
-<div id="app-card"></div>
+<div id="app-widget"></div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        let card = new SteamApp('#app-card', {
+        let widget = new SteamApp('#app-widget', {
             appid: '620',
             //You can specify the same attributes as shown in the table above
         });
@@ -148,19 +146,19 @@ The following methods are available for a Steam App element / object:
 		</tr>
 		<tr>
 			<td>updateCard()</td>
-			<td>Updates the card data and displays them</td>
+			<td>Updates the widget data and displays them</td>
 		</tr>
 		<tr>
 			<td>changeLang(lang, playtext, author, onlinecount)</td>
-			<td>Changes the language of the card using the given information</td>
+			<td>Changes the language of the widget using the given information</td>
 		</tr>
 		<tr>
 			<td>setImageVisibility(visibility)</td>
-			<td>Sets the card image visibility</td>
+			<td>Sets the widget image visibility</td>
 		</tr>
 		<tr>
 			<td>remove()</td>
-			<td>Removes the card from the document</td>
+			<td>Removes the widget from the document</td>
 		</tr>
 	</tbody>
 </table>
@@ -169,15 +167,13 @@ The following methods are available for a Steam App element / object:
 
 ## Steam Server
 
-When referenced the required Steam Server module, the minimum code to render a card is as follows:
+When referenced the required Steam Server module, the minimum code to render a widget is as follows:
 
 ```html
 <steam-server addr="ip:port"></steam-server>
 ```
 
-This renders the following card:
-
-![Server Card](https://www.steamcards.net/img/card_server.png)
+This renders the following widget:
 
 You can define these options:
 
@@ -197,7 +193,7 @@ You can define these options:
 		</tr>
 		<tr>
 			<td>header</td>
-			<td>If you want to render the card with a header image you may specify the URL to an image here</td>
+			<td>If you want to render the widget with a header image you may specify the URL to an image here</td>
 		</tr>
 		<tr>
 			<td>bots</td>
@@ -225,11 +221,11 @@ You can define these options:
 		</tr>
 		<tr>
 			<td>width</td>
-			<td>Specify the width of the card</td>
+			<td>Specify the width of the widget</td>
 		</tr>
 		<tr>
 			<td>height</td>
-			<td>Specify the height of the card</td>
+			<td>Specify the height of the widget</td>
 		</tr>
 		<tr>
 			<td>style-border / style.border</td>
@@ -254,14 +250,14 @@ You can define these options:
 	</tbody>
 </table>
 
-You can also dynamically create Steam Server cards via JavaScript:
+You can also dynamically create Steam Server widgets via JavaScript:
 
 ```html
-<div id="server-card"></div>
+<div id="server-widget"></div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-	let card = new SteamServer('#server-card', {
+	let widget = new SteamServer('#server-widget', {
 		addr: 'ip:port',
 		//You can specify the same attributes as shown in the table above
 	});
@@ -283,19 +279,19 @@ The following methods are available for a Steam Server element / object:
 		</tr>
 		<tr>
 			<td>updateCard()</td>
-			<td>Updates the card data and displays them</td>
+			<td>Updates the widget data and displays them</td>
 		</tr>
 		<tr>
 			<td>changeLang(bots, secure_yes, secure_no, hosting_dedicated, hosting_listen, playtext)</td>
-			<td>Changes the language of the card using the given information</td>
+			<td>Changes the language of the widget using the given information</td>
 		</tr>
 		<tr>
 			<td>setImageVisibility(visibility)</td>
-			<td>Sets the card image visibility</td>
+			<td>Sets the widget image visibility</td>
 		</tr>
 		<tr>
 			<td>remove()</td>
-			<td>Removes the card from the document</td>
+			<td>Removes the widget from the document</td>
 		</tr>
 	</tbody>
 </table>
@@ -304,15 +300,13 @@ The following methods are available for a Steam Server element / object:
 
 ## Steam User
 
-When referenced the required Steam User module, the minimum code to render a card is as follows:
+When referenced the required Steam User module, the minimum code to render a widget is as follows:
 
 ```html
 <steam-user steamid="id"></steam-user>
 ```
 
-This renders the following card:
-
-![User Card](https://www.steamcards.net/img/card_user.png)
+This renders the following widget:
 
 You can define these options:
 
@@ -332,7 +326,7 @@ You can define these options:
 		</tr>
 		<tr>
 			<td>header</td>
-			<td>If you want to render the card with a header image you may specify the URL to an image here</td>
+			<td>If you want to render the widget with a header image you may specify the URL to an image here</td>
 		</tr>
 		<tr>
 			<td>online_yes</td>
@@ -352,11 +346,11 @@ You can define these options:
 		</tr>
 		<tr>
 			<td>width</td>
-			<td>Specify the width of the card</td>
+			<td>Specify the width of the widget</td>
 		</tr>
 		<tr>
 			<td>height</td>
-			<td>Specify the height of the card</td>
+			<td>Specify the height of the widget</td>
 		</tr>
 		<tr>
 			<td>style-border / style.border</td>
@@ -381,14 +375,14 @@ You can define these options:
 	</tbody>
 </table>
 
-You can also dynamically create Steam User cards via JavaScript:
+You can also dynamically create Steam User widgets via JavaScript:
 
 ```html
-<div id="user-card"></div>
+<div id="user-widget"></div>
 
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
-        let card = new SteamUser('#user-card', {
+        let widget = new SteamUser('#user-widget', {
             steamid: 'id',
             //You can specify the same attributes as shown in the table above
         });
@@ -410,19 +404,19 @@ The following methods are available for a Steam User element / object:
 		</tr>
 		<tr>
 			<td>updateCard()</td>
-			<td>Updates the card data and displays them</td>
+			<td>Updates the widget data and displays them</td>
 		</tr>
 		<tr>
 			<td>changeLang(online_yes, online_no, member_since, viewtext)</td>
-			<td>Changes the language of the card using the given information</td>
+			<td>Changes the language of the widget using the given information</td>
 		</tr>
 		<tr>
 			<td>setImageVisibility(visibility)</td>
-			<td>Sets the card image visibility</td>
+			<td>Sets the widget image visibility</td>
 		</tr>
 		<tr>
 			<td>remove()</td>
-			<td>Removes the card from the document</td>
+			<td>Removes the widget from the document</td>
 		</tr>
 	</tbody>
 </table>
