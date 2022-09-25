@@ -36,7 +36,8 @@ When referenced the required Steam App module, the minimum code to render a widg
 <steam-app appid="620"></steam-app>
 ```
 
-This renders the following widget:
+This renders the following widget:<br>
+![Steam App Widget](https://www.steamwidgets.com/img/widget_app.png)
 
 You can define these options:
 
@@ -173,7 +174,8 @@ When referenced the required Steam Server module, the minimum code to render a w
 <steam-server addr="ip:port"></steam-server>
 ```
 
-This renders the following widget:
+This renders the following widget:<br>
+![Steam Server Widget](https://www.steamwidgets.com/img/widget_server.png)
 
 You can define these options:
 
@@ -306,7 +308,8 @@ When referenced the required Steam User module, the minimum code to render a wid
 <steam-user steamid="id"></steam-user>
 ```
 
-This renders the following widget:
+This renders the following widget:<br>
+![Steam User Widget](https://www.steamwidgets.com/img/widget_user.png)
 
 You can define these options:
 
