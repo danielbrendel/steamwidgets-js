@@ -145,7 +145,7 @@ The following methods are available for a Steam App element / object:
 			<td><strong>Description</strong></td>
 		</tr>
 		<tr>
-			<td>updateCard()</td>
+			<td>updateWidget()</td>
 			<td>Updates the widget data and displays them</td>
 		</tr>
 		<tr>
@@ -278,7 +278,7 @@ The following methods are available for a Steam Server element / object:
 			<td><strong>Description</strong></td>
 		</tr>
 		<tr>
-			<td>updateCard()</td>
+			<td>updateWidget()</td>
 			<td>Updates the widget data and displays them</td>
 		</tr>
 		<tr>
@@ -403,7 +403,7 @@ The following methods are available for a Steam User element / object:
 			<td><strong>Description</strong></td>
 		</tr>
 		<tr>
-			<td>updateCard()</td>
+			<td>updateWidget()</td>
 			<td>Updates the widget data and displays them</td>
 		</tr>
 		<tr>
