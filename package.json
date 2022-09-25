@@ -18,7 +18,8 @@
     "steam-app",
     "steam-server",
     "steam-player",
-    "steam-workshop"
+    "steam-workshop",
+    "steam-api"
   ],
   "author": "Daniel Brendel",
   "license": "MIT",
