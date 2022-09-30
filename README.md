@@ -16,6 +16,7 @@ The following Widgets are currently available:
 - Steam Server Widget
 - Steam User Widget
 - Steam Workshop Widget
+- Steam Group Widget
 
 ## Installation
 
@@ -30,6 +31,7 @@ import 'steamwidgets/steam_app'; //Import Steam App Widget
 import 'steamwidgets/steam_server'; //Import Steam Server Widget
 import 'steamwidgets/steam_user'; //Import Steam User Widget
 import 'steamwidgets/steam_workshop'; //Import Steam Workshop Widget
+import 'steamwidgets/steam_group'; //Import Steam Group Widget
 ```
 
 ## Steam App
@@ -545,6 +547,130 @@ The following methods are available for a Steam Workshop element / object:
 		</tr>
 		<tr>
 			<td>changeLang(views, subscriptions, favorites, author, viewtext)</td>
+			<td>Changes the language of the widget using the given information</td>
+		</tr>
+		<tr>
+			<td>setImageVisibility(visibility)</td>
+			<td>Sets the widget image visibility</td>
+		</tr>
+		<tr>
+			<td>remove()</td>
+			<td>Removes the widget from the document</td>
+		</tr>
+	</tbody>
+</table>
+
+## Steam Group
+
+When referenced the required Steam Group module, the minimum code to render a widget is as follows:
+
+```html
+<steam-group group="id"></steam-group>
+```
+
+This renders the following widget:<br>
+![Steam Group Widget](https://www.steamwidgets.com/img/widget_group.png)
+
+You can define these options:
+
+<table>
+	<thead>
+		<tr></tr>
+		<tr></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>Attribute</strong></td>
+			<td><strong>Value</strong></td>
+		</tr>
+		<tr>
+			<td>group</td>
+			<td>Specifies the group either by numeric ID or URL identifier token</td>
+		</tr>
+		<tr>
+			<td>members</td>
+			<td>Specifies the text of the members stats label</td>
+		</tr>
+		<tr>
+			<td>online</td>
+			<td>Specifies the text of the online stats label</td>
+		</tr>
+		<tr>
+			<td>ingame</td>
+			<td>Specifies the text of the in-game stats label</td>
+		</tr>
+		<tr>
+			<td>viewtext</td>
+			<td>Specifies the text of the button which can be used to go to the group page</td>
+		</tr>
+		<tr>
+			<td>show-image / showImage</td>
+			<td>Specifies if the group avatar image shall be displayed. Defaults to true/1</td>
+		</tr>
+		<tr>
+			<td>style-border / style.border</td>
+			<td>Specify border rounding: Either none, small or max</td>
+		</tr>
+		<tr>
+			<td>style-shadow / style.shadow</td>
+			<td>You can specify false to prevent displaying box shadow or true to enable (default)</td>
+		</tr>
+		<tr>
+			<td>style-color-background / style.colorBackground</td>
+			<td>Specify a CSS value for the background color</td>
+		</tr>
+		<tr>
+			<td>style-color-title / style.colorTitle</td>
+			<td>Specify a CSS value for the title color</td>
+		</tr>
+		<tr>
+			<td>style-color-description / style.colorDescription</td>
+			<td>Specify a CSS value for the description color</td>
+		</tr>
+		<tr>
+			<td>style-color-stats-count / style.colorStatsCount</td>
+			<td>Specify a CSS value for the stats count color</td>
+		</tr>
+		<tr>
+			<td>style-color-stats-label / style.colorStatsLabel</td>
+			<td>Specify a CSS value for the stats label color</td>
+		</tr>
+	</tbody>
+</table>
+
+You can also dynamically create Steam Group widgets via JavaScript:
+
+```html
+<div id="group-widget"></div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+        let widget = new SteamGroup('#group-widget', {
+            group: 'id or url',
+            //You can specify the same attributes as shown in the table above
+        });
+    });
+</script>
+```
+
+The following methods are available for a Steam Group element / object:
+
+<table>
+	<thead>
+		<tr></tr>
+		<tr></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>Method</strong></td>
+			<td><strong>Description</strong></td>
+		</tr>
+		<tr>
+			<td>updateWidget()</td>
+			<td>Updates the widget data and displays them</td>
+		</tr>
+		<tr>
+			<td>changeLang(online, ingame, members, viewtext)</td>
 			<td>Changes the language of the widget using the given information</td>
 		</tr>
 		<tr>
