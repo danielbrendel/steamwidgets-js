@@ -1,6 +1,6 @@
 {
   "name": "steamwidgets",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Render Steam Widgets into your document",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,7 @@
     "steam-server",
     "steam-player",
     "steam-workshop",
+    "steam-group",
     "steam-api"
   ],
   "author": "Daniel Brendel",
