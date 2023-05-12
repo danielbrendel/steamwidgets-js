@@ -293,7 +293,7 @@
   * 
   * Dynamically create a Steam server widget via JavaScript
   */
- class SteamServer
+ module.exports = class SteamServer
  {
      elem = null;
      selident = null;

@@ -269,7 +269,7 @@ window.customElements.define('steam-group', SteamGroupElem);
  * 
  * Dynamically create a Steam group widget via JavaScript
  */
-class SteamGroup
+module.exports = class SteamGroup
 {
     elem = null;
     selident = null;

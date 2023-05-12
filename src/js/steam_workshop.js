@@ -274,7 +274,7 @@ window.customElements.define('steam-workshop', SteamWorkshopElem);
  * 
  * Dynamically create a Steam workshop widget via JavaScript
  */
-class SteamWorkshop
+module.exports = class SteamWorkshop
 {
     elem = null;
     selident = null;

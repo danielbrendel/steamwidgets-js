@@ -264,7 +264,7 @@
   * 
   * Dynamically create a Steam user widget via JavaScript
   */
- class SteamUser
+ module.exports = class SteamUser
  {
      elem = null;
      selident = null;

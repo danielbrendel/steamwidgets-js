@@ -326,7 +326,7 @@ window.customElements.define('steam-app', SteamAppElem);
  * 
  * Dynamically create a Steam game/app widget via JavaScript
  */
-class SteamApp
+module.exports = class SteamApp
 {
     elem = null;
     selident = null;
