@@ -10,10 +10,10 @@ const STEAMWIDGETS_WORKSHOP_ENDPOINT = 'https://www.steamwidgets.com';
 const STEAMWIDGETS_WORKSHOP_VERSION = 'v1';
  
 /**
-* Class SteamWorkshopElem
-* 
-* Handle custom HTML element to render Steam workshop widgets
-*/
+ * Class SteamWorkshopElem
+ * 
+ * Handle custom HTML element to render Steam workshop widgets
+ */
 class SteamWorkshopElem extends HTMLElement
 {
     DESCRIPTION_MAX_LEN = 40;
@@ -80,6 +80,10 @@ class SteamWorkshopElem extends HTMLElement
         var req = new XMLHttpRequest();
         var self = this;
 
+        if ((typeof self.custom_events !== 'undefined') && (typeof self.custom_events.eventOnInit !== 'undefined')) {
+            self.dispatchEvent(self.custom_events.eventOnInit);
+        }
+
         req.onreadystatechange = function() {
             if (req.readyState == XMLHttpRequest.DONE) {
                 let json = JSON.parse(req.responseText);
@@ -121,7 +125,7 @@ class SteamWorkshopElem extends HTMLElement
 
                 let description = json.data.description;
                 if (description.length >= self.DESCRIPTION_MAX_LEN) {
-                description = description.substr(0, self.DESCRIPTION_MAX_LEN - 3) + '...';
+                    description = description.substr(0, self.DESCRIPTION_MAX_LEN - 3) + '...';
                 }
 
                 author = author.replace(':creator', json.data.creator_data.personaname);
@@ -164,6 +168,10 @@ class SteamWorkshopElem extends HTMLElement
                 `;
 
                 self.innerHTML = html;
+
+                if ((typeof self.custom_events !== 'undefined') && (typeof self.custom_events.eventOnCompleted !== 'undefined')) {
+                    self.dispatchEvent(self.custom_events.eventOnCompleted);
+                }
             }
         };
         req.open('GET', STEAMWIDGETS_WORKSHOP_ENDPOINT + '/api/query/workshop?itemid=' + itemid, true);
@@ -262,11 +270,11 @@ class SteamWorkshopElem extends HTMLElement
 window.customElements.define('steam-workshop', SteamWorkshopElem);
  
 /**
-* Class SteamWorkshop
-* 
-* Dynamically create a Steam workshop widgets via JavaScript
-*/
-module.exports = class SteamWorkshop
+ * Class SteamWorkshop
+ * 
+ * Dynamically create a Steam workshop widget via JavaScript
+ */
+class SteamWorkshop
 {
     elem = null;
     selident = null;
@@ -283,7 +291,7 @@ module.exports = class SteamWorkshop
         var favorites = (typeof config.favorites !== 'undefined') ? config.favorites : 'Favorites';
         var author = (typeof config.author !== 'undefined') ? config.author : 'By :creator';
         var viewtext = (typeof config.viewtext !== 'undefined') ? config.viewtext : 'View item';
-        var showImage = (typeof config.showImage !== 'undefined') ? config.showImage : null;
+        var showImage = (typeof config.showImage !== 'undefined') ? config.showImage : true;
 
         if (typeof showImage === 'boolean') {
             showImage = (showImage) ? 1 : 0;
@@ -296,6 +304,9 @@ module.exports = class SteamWorkshop
         var styleColorDescription = null;
         var styleColorStatsCount = null;
         var styleColorStatsLabel = null;
+
+        var evtOnInit = null;
+        var evtOnCompleted = null;
         
         if (typeof config.style !== 'undefined') {
             styleBorder = (typeof config.style.border !== 'undefined') ? config.style.border : null;
@@ -305,6 +316,11 @@ module.exports = class SteamWorkshop
             styleColorDescription = (typeof config.style.colorDescription !== 'undefined') ? config.style.colorDescription : null;
             styleColorStatsCount = (typeof config.style.colorStatsCount !== 'undefined') ? config.style.colorStatsCount : null;
             styleColorStatsLabel = (typeof config.style.colorStatsLabel !== 'undefined') ? config.style.colorStatsLabel : null;
+        }
+
+        if (typeof config.events !== 'undefined') {
+            evtOnInit = (typeof config.events.onInit === 'function') ? config.events.onInit : null;
+            evtOnCompleted = (typeof config.events.onCompleted === 'function') ? config.events.onCompleted : null;
         }
 
         if (typeof styleShadow === 'boolean') {
@@ -327,6 +343,18 @@ module.exports = class SteamWorkshop
         this.elem.setAttribute('style-color-stats-count', styleColorStatsCount);
         this.elem.setAttribute('style-color-stats-label', styleColorStatsLabel);
 
+        this.elem.custom_events = {};
+
+        if (evtOnInit !== null) {
+            this.elem.custom_events.eventOnInit = new CustomEvent('onInit', { detail: this });
+            this.elem.addEventListener('onInit', evtOnInit, false);
+        }
+
+        if (evtOnCompleted !== null) {
+            this.elem.custom_events.eventOnCompleted = new CustomEvent('onCompleted', { detail: this });
+            this.elem.addEventListener('onCompleted', evtOnCompleted, false);
+        }
+
         let sel = document.querySelector(selector);
         if (sel) {
             sel.appendChild(this.elem);
@@ -340,12 +368,12 @@ module.exports = class SteamWorkshop
 
     changeLang(views, subscriptions, favorites, author, viewtext)
     {
-    this.elem.changeLang(views, subscriptions, favorites, author, viewtext);
+        this.elem.changeLang(views, subscriptions, favorites, author, viewtext);
     }
 
     setImageVisibility(visibility)
     {
-    this.elem.setImageVisibility(visibility);
+        this.elem.setImageVisibility(visibility);
     }
 
     remove()
@@ -353,3 +381,4 @@ module.exports = class SteamWorkshop
         this.elem.remove();
     }
 }
+ 

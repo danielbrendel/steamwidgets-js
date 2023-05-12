@@ -133,7 +133,7 @@ You can also dynamically create Steam Widgets via JavaScript:
     document.addEventListener('DOMContentLoaded', function() {
         let widget = new SteamApp('#app-widget', {
             appid: '620',
-            //You can specify the same attributes as shown in the table above
+            //You can specify the same attributes as shown in the table above as well as events (see below)
         });
     });
 </script>
@@ -166,6 +166,29 @@ The following methods are available for a Steam App element / object:
 		<tr>
 			<td>remove()</td>
 			<td>Removes the widget from the document</td>
+		</tr>
+	</tbody>
+</table>
+
+The following events are available for a Steam App object:
+
+<table>
+	<thead>
+		<tr></tr>
+		<tr></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>Event</strong></td>
+			<td><strong>Description</strong></td>
+		</tr>
+		<tr>
+			<td>events.onInit(e)</td>
+			<td>Called when the widget is initialized</td>
+		</tr>
+		<tr>
+			<td>events.onCompleted(e)</td>
+			<td>Called when the widget has finished loading</td>
 		</tr>
 	</tbody>
 </table>
@@ -267,7 +290,7 @@ You can also dynamically create Steam Server widgets via JavaScript:
 document.addEventListener('DOMContentLoaded', function() {
 	let widget = new SteamServer('#server-widget', {
 		addr: 'ip:port',
-		//You can specify the same attributes as shown in the table above
+		//You can specify the same attributes as shown in the table above as well as events (see below)
 	});
 });
 </script>
@@ -300,6 +323,29 @@ The following methods are available for a Steam Server element / object:
 		<tr>
 			<td>remove()</td>
 			<td>Removes the widget from the document</td>
+		</tr>
+	</tbody>
+</table>
+
+The following events are available for a Steam Server object:
+
+<table>
+	<thead>
+		<tr></tr>
+		<tr></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>Event</strong></td>
+			<td><strong>Description</strong></td>
+		</tr>
+		<tr>
+			<td>events.onInit(e)</td>
+			<td>Called when the widget is initialized</td>
+		</tr>
+		<tr>
+			<td>events.onCompleted(e)</td>
+			<td>Called when the widget has finished loading</td>
 		</tr>
 	</tbody>
 </table>
@@ -393,7 +439,7 @@ You can also dynamically create Steam User widgets via JavaScript:
 	document.addEventListener('DOMContentLoaded', function() {
         let widget = new SteamUser('#user-widget', {
             steamid: 'id',
-            //You can specify the same attributes as shown in the table above
+            //You can specify the same attributes as shown in the table above as well as events (see below)
         });
     });
 </script>
@@ -426,6 +472,29 @@ The following methods are available for a Steam User element / object:
 		<tr>
 			<td>remove()</td>
 			<td>Removes the widget from the document</td>
+		</tr>
+	</tbody>
+</table>
+
+The following events are available for a Steam User object:
+
+<table>
+	<thead>
+		<tr></tr>
+		<tr></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>Event</strong></td>
+			<td><strong>Description</strong></td>
+		</tr>
+		<tr>
+			<td>events.onInit(e)</td>
+			<td>Called when the widget is initialized</td>
+		</tr>
+		<tr>
+			<td>events.onCompleted(e)</td>
+			<td>Called when the widget has finished loading</td>
 		</tr>
 	</tbody>
 </table>
@@ -523,7 +592,7 @@ You can also dynamically create Steam Workshop widgets via JavaScript:
 	document.addEventListener('DOMContentLoaded', function() {
         let widget = new SteamWorkshop('#workshop-widget', {
             itemid: 'id',
-            //You can specify the same attributes as shown in the table above
+            //You can specify the same attributes as shown in the table above as well as events (see below)
         });
     });
 </script>
@@ -556,6 +625,29 @@ The following methods are available for a Steam Workshop element / object:
 		<tr>
 			<td>remove()</td>
 			<td>Removes the widget from the document</td>
+		</tr>
+	</tbody>
+</table>
+
+The following events are available for a Steam Workshop object:
+
+<table>
+	<thead>
+		<tr></tr>
+		<tr></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>Event</strong></td>
+			<td><strong>Description</strong></td>
+		</tr>
+		<tr>
+			<td>events.onInit(e)</td>
+			<td>Called when the widget is initialized</td>
+		</tr>
+		<tr>
+			<td>events.onCompleted(e)</td>
+			<td>Called when the widget has finished loading</td>
 		</tr>
 	</tbody>
 </table>
@@ -647,7 +739,7 @@ You can also dynamically create Steam Group widgets via JavaScript:
 	document.addEventListener('DOMContentLoaded', function() {
         let widget = new SteamGroup('#group-widget', {
             group: 'id or url',
-            //You can specify the same attributes as shown in the table above
+            //You can specify the same attributes as shown in the table above as well as events (see below)
         });
     });
 </script>
@@ -680,6 +772,29 @@ The following methods are available for a Steam Group element / object:
 		<tr>
 			<td>remove()</td>
 			<td>Removes the widget from the document</td>
+		</tr>
+	</tbody>
+</table>
+
+The following events are available for a Steam Group object:
+
+<table>
+	<thead>
+		<tr></tr>
+		<tr></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>Event</strong></td>
+			<td><strong>Description</strong></td>
+		</tr>
+		<tr>
+			<td>events.onInit(e)</td>
+			<td>Called when the widget is initialized</td>
+		</tr>
+		<tr>
+			<td>events.onCompleted(e)</td>
+			<td>Called when the widget has finished loading</td>
 		</tr>
 	</tbody>
 </table>

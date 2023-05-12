@@ -83,6 +83,10 @@ class SteamAppElem extends HTMLElement
         var req = new XMLHttpRequest();
         var self = this;
 
+        if ((typeof self.custom_events !== 'undefined') && (typeof self.custom_events.eventOnInit !== 'undefined')) {
+            self.dispatchEvent(self.custom_events.eventOnInit);
+        }
+
         req.onreadystatechange = function() {
             if (req.readyState == XMLHttpRequest.DONE) {
                 let json = JSON.parse(req.responseText);
@@ -211,6 +215,10 @@ class SteamAppElem extends HTMLElement
                 `;
 
                 self.innerHTML = html;
+
+                if ((typeof self.custom_events !== 'undefined') && (typeof self.custom_events.eventOnCompleted !== 'undefined')) {
+                    self.dispatchEvent(self.custom_events.eventOnCompleted);
+                }
             }
         };
         req.open('GET', STEAMWIDGETS_APP_ENDPOINT + '/api/query/app?appid=' + appid + '&lang=' + lang, true);
@@ -318,7 +326,7 @@ window.customElements.define('steam-app', SteamAppElem);
  * 
  * Dynamically create a Steam game/app widget via JavaScript
  */
-module.exports = class SteamApp
+class SteamApp
 {
     elem = null;
     selident = null;
@@ -346,6 +354,9 @@ module.exports = class SteamApp
         var styleColorAuthor = null;
         var styleColorOnlinecount = null;
         var styleHideImage = 0;
+
+        var evtOnInit = null;
+        var evtOnCompleted = null;
         
         if (typeof config.style !== 'undefined') {
             styleBorder = (typeof config.style.border !== 'undefined') ? config.style.border : null;
@@ -356,6 +367,11 @@ module.exports = class SteamApp
             styleColorAuthor = (typeof config.style.colorAuthor !== 'undefined') ? config.style.colorAuthor : null;
             styleColorOnlinecount = (typeof config.style.colorOnlinecount !== 'undefined') ? config.style.colorOnlinecount : null;
             styleHideImage = (typeof config.style.hideimage !== 'undefined') ? config.style.hideimage : 0;
+        }
+
+        if (typeof config.events !== 'undefined') {
+            evtOnInit = (typeof config.events.onInit === 'function') ? config.events.onInit : null;
+            evtOnCompleted = (typeof config.events.onCompleted === 'function') ? config.events.onCompleted : null;
         }
 
         if (typeof rating === 'boolean') {
@@ -395,6 +411,18 @@ module.exports = class SteamApp
 
         if (height !== null) {
             this.elem.setAttribute('height', height);
+        }
+
+        this.elem.custom_events = {};
+
+        if (evtOnInit !== null) {
+            this.elem.custom_events.eventOnInit = new CustomEvent('onInit', { detail: this });
+            this.elem.addEventListener('onInit', evtOnInit, false);
+        }
+
+        if (evtOnCompleted !== null) {
+            this.elem.custom_events.eventOnCompleted = new CustomEvent('onCompleted', { detail: this });
+            this.elem.addEventListener('onCompleted', evtOnCompleted, false);
         }
 
         let sel = document.querySelector(selector);

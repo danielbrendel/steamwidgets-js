@@ -78,6 +78,10 @@ class SteamGroupElem extends HTMLElement
         var req = new XMLHttpRequest();
         var self = this;
 
+        if ((typeof self.custom_events !== 'undefined') && (typeof self.custom_events.eventOnInit !== 'undefined')) {
+            self.dispatchEvent(self.custom_events.eventOnInit);
+        }
+
         req.onreadystatechange = function() {
             if (req.readyState == XMLHttpRequest.DONE) {
                 let json = JSON.parse(req.responseText);
@@ -163,6 +167,10 @@ class SteamGroupElem extends HTMLElement
                 `;
 
                 self.innerHTML = html;
+
+                if ((typeof self.custom_events !== 'undefined') && (typeof self.custom_events.eventOnCompleted !== 'undefined')) {
+                    self.dispatchEvent(self.custom_events.eventOnCompleted);
+                }
             }
         };
         req.open('GET', STEAMWIDGETS_GROUP_ENDPOINT + '/api/query/group?group=' + group, true);
@@ -261,7 +269,7 @@ window.customElements.define('steam-group', SteamGroupElem);
  * 
  * Dynamically create a Steam group widget via JavaScript
  */
-module.exports = class SteamGroup
+class SteamGroup
 {
     elem = null;
     selident = null;
@@ -290,6 +298,9 @@ module.exports = class SteamGroup
         var styleColorDescription = null;
         var styleColorStatsCount = null;
         var styleColorStatsLabel = null;
+
+        var evtOnInit = null;
+        var evtOnCompleted = null;
         
         if (typeof config.style !== 'undefined') {
             styleBorder = (typeof config.style.border !== 'undefined') ? config.style.border : null;
@@ -299,6 +310,11 @@ module.exports = class SteamGroup
             styleColorDescription = (typeof config.style.colorDescription !== 'undefined') ? config.style.colorDescription : null;
             styleColorStatsCount = (typeof config.style.colorStatsCount !== 'undefined') ? config.style.colorStatsCount : null;
             styleColorStatsLabel = (typeof config.style.colorStatsLabel !== 'undefined') ? config.style.colorStatsLabel : null;
+        }
+
+        if (typeof config.events !== 'undefined') {
+            evtOnInit = (typeof config.events.onInit === 'function') ? config.events.onInit : null;
+            evtOnCompleted = (typeof config.events.onCompleted === 'function') ? config.events.onCompleted : null;
         }
 
         if (typeof styleShadow === 'boolean') {
@@ -319,6 +335,18 @@ module.exports = class SteamGroup
         this.elem.setAttribute('style-color-description', styleColorDescription);
         this.elem.setAttribute('style-color-stats-count', styleColorStatsCount);
         this.elem.setAttribute('style-color-stats-label', styleColorStatsLabel);
+
+        this.elem.custom_events = {};
+
+        if (evtOnInit !== null) {
+            this.elem.custom_events.eventOnInit = new CustomEvent('onInit', { detail: this });
+            this.elem.addEventListener('onInit', evtOnInit, false);
+        }
+
+        if (evtOnCompleted !== null) {
+            this.elem.custom_events.eventOnCompleted = new CustomEvent('onCompleted', { detail: this });
+            this.elem.addEventListener('onCompleted', evtOnCompleted, false);
+        }
 
         let sel = document.querySelector(selector);
         if (sel) {
