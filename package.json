@@ -1,6 +1,6 @@
 {
   "name": "steamwidgets",
-  "version": "1.0.6",
+  "version": "1.0.9",
   "description": "Render Steam Widgets into your document",
   "main": "index.js",
   "scripts": {
