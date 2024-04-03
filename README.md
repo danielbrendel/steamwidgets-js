@@ -21,17 +21,17 @@ The following Widgets are currently available:
 ## Installation
 
 ```
-npm i steamwidgets
+npm i steamwidgets.js
 ```
 
 ```javascript
-import 'steamwidgets'; //Import all available widgets
+import 'steamwidgets.js'; //Import all available widgets
 
-import 'steamwidgets/steam_app'; //Import Steam App Widget
-import 'steamwidgets/steam_server'; //Import Steam Server Widget
-import 'steamwidgets/steam_user'; //Import Steam User Widget
-import 'steamwidgets/steam_workshop'; //Import Steam Workshop Widget
-import 'steamwidgets/steam_group'; //Import Steam Group Widget
+import 'steamwidgets.js/steam_app'; //Import Steam App Widget
+import 'steamwidgets.js/steam_server'; //Import Steam Server Widget
+import 'steamwidgets.js/steam_user'; //Import Steam User Widget
+import 'steamwidgets.js/steam_workshop'; //Import Steam Workshop Widget
+import 'steamwidgets.js/steam_group'; //Import Steam Group Widget
 ```
 
 ## Steam App
