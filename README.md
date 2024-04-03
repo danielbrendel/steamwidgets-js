@@ -4,7 +4,7 @@
 
 Released under the MIT license
 
-https://www.steamwidgets.com
+https://www.steamwidgets.net
 
 ## About
 SteamWidgets is a clientside web component that offers an easy way to integrate Steam Widgets of various Steam entities into your website. Therefore you only need very few code in order to render Steam Widgets into your document.
@@ -43,7 +43,7 @@ When referenced the required Steam App module, the minimum code to render a widg
 ```
 
 This renders the following widget:<br>
-![Steam App Widget](https://www.steamwidgets.com/img/widget_app.png)
+![Steam App Widget](https://www.steamwidgets.net/img/widget_app.png)
 
 You can define these options:
 
@@ -204,7 +204,7 @@ When referenced the required Steam Server module, the minimum code to render a w
 ```
 
 This renders the following widget:<br>
-![Steam Server Widget](https://www.steamwidgets.com/img/widget_server.png)
+![Steam Server Widget](https://www.steamwidgets.net/img/widget_server.png)
 
 You can define these options:
 
@@ -361,7 +361,7 @@ When referenced the required Steam User module, the minimum code to render a wid
 ```
 
 This renders the following widget:<br>
-![Steam User Widget](https://www.steamwidgets.com/img/widget_user.png)
+![Steam User Widget](https://www.steamwidgets.net/img/widget_user.png)
 
 You can define these options:
 
@@ -510,7 +510,7 @@ When referenced the required Steam Workshop module, the minimum code to render a
 ```
 
 This renders the following widget:<br>
-![Steam Workshop Widget](https://www.steamwidgets.com/img/widget_workshop.png)
+![Steam Workshop Widget](https://www.steamwidgets.net/img/widget_workshop.png)
 
 You can define these options:
 
@@ -661,7 +661,7 @@ When referenced the required Steam Group module, the minimum code to render a wi
 ```
 
 This renders the following widget:<br>
-![Steam Group Widget](https://www.steamwidgets.com/img/widget_group.png)
+![Steam Group Widget](https://www.steamwidgets.net/img/widget_group.png)
 
 You can define these options:
 

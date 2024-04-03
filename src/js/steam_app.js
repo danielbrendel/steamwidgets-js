@@ -6,7 +6,7 @@
  * Visit: https://github.com/danielbrendel
  */
 
-const STEAMWIDGETS_APP_ENDPOINT = 'https://www.steamwidgets.com';
+const STEAMWIDGETS_APP_ENDPOINT = 'https://www.steamwidgets.net';
 const STEAMWIDGETS_APP_VERSION = 'v1';
 
 /**
