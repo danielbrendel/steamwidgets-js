@@ -27,7 +27,7 @@
          var height = (typeof this.attributes.height !== 'undefined') ? this.attributes.height.value : null;
          var online_yes = (typeof this.attributes['online-yes'] !== 'undefined') ? this.attributes['online-yes'].value : 'online';
          var online_no = (typeof this.attributes['online-no'] !== 'undefined') ? this.attributes['online-no'].value : 'offline';
-         var member_since = (typeof this.attributes['member-since'] !== 'undefined') ? this.attributes['member-since'].value : 'Member since: :year-:month-:day';
+         var slogan = (typeof this.attributes['slogan'] !== 'undefined') ? this.attributes['slogan'].value : 'Member since: :year-:month-:day';
          var viewtext = (typeof this.attributes.viewtext !== 'undefined') ? this.attributes.viewtext.value : 'View';
          var styleBorder = (typeof this.attributes['style-border'] !== 'undefined') ? this.attributes['style-border'].value : null;
          var styleShadow = (typeof this.attributes['style-shadow'] !== 'undefined') ? parseInt(this.attributes['style-shadow'].value) : 1;
@@ -43,7 +43,7 @@
                  height: height,
                  online_yes: online_yes,
                  online_no: online_no,
-                 member_since: member_since,
+                 slogan: slogan,
                  viewtext: viewtext,
                  styleBorder: styleBorder,
                  styleShadow: styleShadow,
@@ -59,7 +59,7 @@
                  height,
                  online_yes,
                  online_no,
-                 member_since,
+                 slogan,
                  viewtext,
                  styleBorder,
                  styleShadow,
@@ -70,7 +70,7 @@
          }
      }
  
-     setupWidget(steamid, header, width, height, online_yes, online_no, member_since, viewtext, styleBorder, styleShadow, styleColorBackground, styleColorTextBright, styleColorTextDark)
+     setupWidget(steamid, header, width, height, online_yes, online_no, slogan, viewtext, styleBorder, styleShadow, styleColorBackground, styleColorTextBright, styleColorTextDark)
      {
          var req = new XMLHttpRequest();
          var self = this;
@@ -144,9 +144,9 @@
                  }
 
                  let regdate = new Date(json.data.timecreated * 1000);
-                 member_since = member_since.replace(':year', regdate.getFullYear());
-                 member_since = member_since.replace(':month', regdate.getMonth() + 1);
-                 member_since = member_since.replace(':day', regdate.getDate());
+                 slogan = slogan.replace(':year', regdate.getFullYear());
+                 slogan = slogan.replace(':month', regdate.getMonth() + 1);
+                 slogan = slogan.replace(':day', regdate.getDate());
                  
                  let html = `
                      <div class="steam-user" ` + ((widgetStyle.length > 0) ? widgetStyle: '') + `>
@@ -158,7 +158,7 @@
                                 
                                 <div class="steam-user-infos-left-text">
                                     <div class="steam-user-infos-left-text-name" ` + ((styleColorTextBright !== null) ? 'style="color: ' + styleColorTextBright + ';"' : '') + `>` + json.data.personaname + `</div>
-                                    <div class="steam-user-infos-left-text-since" ` + ((styleColorTextDark !== null) ? 'style="color: ' + styleColorTextDark + ';"' : '') + `>` + member_since + `</div>
+                                    <div class="steam-user-infos-left-text-slogan" ` + ((styleColorTextDark !== null) ? 'style="color: ' + styleColorTextDark + ';"' : '') + `>` + slogan + `</div>
                                 </div>
                             </div>
 
@@ -193,7 +193,7 @@
             this.storedData.height,
             this.storedData.online_yes,
             this.storedData.online_no,
-            this.storedData.member_since,
+            this.storedData.slogan,
             this.storedData.viewtext,
             this.storedData.styleBorder,
             this.storedData.styleShadow,
@@ -203,11 +203,11 @@
          );
      }
 
-     changeLang(online_yes, online_no, member_since, viewtext)
+     changeLang(online_yes, online_no, slogan, viewtext)
     {
         this.storedData.online_yes = online_yes;
         this.storedData.online_no = online_no;
-        this.storedData.member_since = member_since;
+        this.storedData.slogan = slogan;
         this.storedData.viewtext = viewtext;
 
         this.setupWidget(
@@ -217,7 +217,7 @@
             this.storedData.height,
             this.storedData.online_yes,
             this.storedData.online_no,
-            this.storedData.member_since,
+            this.storedData.slogan,
             this.storedData.viewtext,
             this.storedData.styleBorder,
             this.storedData.styleShadow,
@@ -246,7 +246,7 @@
             this.storedData.height,
             this.storedData.online_yes,
             this.storedData.online_no,
-            this.storedData.member_since,
+            this.storedData.slogan,
             this.storedData.viewtext,
             this.storedData.styleBorder,
             this.storedData.styleShadow,
@@ -281,7 +281,7 @@
          var height = (typeof config.height !== 'undefined') ? config.height : null;
          var online_yes = (typeof config.online_yes !== 'undefined') ? config.online_yes : 'online';
          var online_no = (typeof config.online_no !== 'undefined') ? config.online_no : 'offline';
-         var member_since = (typeof config.member_since !== 'undefined') ? config.member_since : 'Member since: :year-:month-:day';
+         var slogan = (typeof config.slogan !== 'undefined') ? config.slogan : 'Member since: :year-:month-:day';
          var viewtext = (typeof config.viewtext !== 'undefined') ? config.viewtext : 'View';
  
          var styleBorder = null;
@@ -320,7 +320,7 @@
          this.elem.setAttribute('style-color-text-dark', styleColorTextDark);
          this.elem.setAttribute('online-yes', online_yes);
          this.elem.setAttribute('online-no', online_no);
-         this.elem.setAttribute('member-since', member_since);
+         this.elem.setAttribute('slogan', slogan);
          this.elem.setAttribute('viewtext', viewtext);
 
          if (width !== null) {
@@ -354,9 +354,9 @@
          this.elem.updateWidget();
      }
 
-     changeLang(online_yes, online_no, member_since, viewtext)
+     changeLang(online_yes, online_no, slogan, viewtext)
      {
-        this.elem.changeLang(online_yes, online_no, member_since, viewtext);
+        this.elem.changeLang(online_yes, online_no, slogan, viewtext);
      }
 
      setImageVisibility(visibility)

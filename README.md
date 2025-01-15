@@ -1,6 +1,6 @@
 # SteamWidgets NPM package
 
-(C) 2022 - 2024 by Daniel Brendel
+(C) 2022 - 2025 by Daniel Brendel
 
 Released under the MIT license
 
